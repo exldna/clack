@@ -73,3 +73,27 @@ fn simple_brackets() {
     ];
     assert_eq!(actual.collect::<Vec<_>>(), expected)
 }
+
+#[test]
+fn brackets() {
+    let actual = clack::tokenize("(()() ( (() ())) ( )) ");
+    let expected = vec![
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Left),
+        Token::Bracket(Bracket::Right),
+        Token::Bracket(Bracket::Right),
+    ];
+    assert_eq!(actual.collect::<Vec<_>>(), expected)
+}

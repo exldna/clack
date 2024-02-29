@@ -49,3 +49,17 @@ fn complex_example() {
     let expected = Ok(Number::Integer(-10));
     assert_eq!(actual, expected)
 }
+
+#[test]
+fn reminder() {
+    let actual = clack::calc(Config::query("3 % 2"));
+    let expected = Ok(Number::Integer(1));
+    assert_eq!(actual, expected)
+}
+
+#[test]
+fn bad_reminder() {
+    let Err(_) = clack::calc(Config::query("3 % 2.0")) else {
+        panic!("Reminder defined only for integers");
+    };
+}
