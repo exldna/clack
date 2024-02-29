@@ -1,15 +1,21 @@
 mod config;
+
 pub use config::Config;
 
-mod arithmetic;
-pub use arithmetic::{Bracket, Operator, Number};
+pub mod arithmetic;
 
 mod tokenizer;
+
+pub use tokenizer::ReversePolishNotation;
 pub use tokenizer::Token;
-pub use tokenizer::Tokenize;
-pub use tokenizer::tokenize;
 pub use tokenizer::Tokenizer;
 
-pub fn calc(config: Config) -> Result<Number, &'static str> {
-    config.query.chars().tokenize().evaluate()
+mod parser;
+
+pub use parser::tokenize;
+pub use parser::Parser;
+pub use parser::Tokenize;
+
+pub fn calc(config: Config) -> Result<arithmetic::Number, &'static str> {
+    tokenize(&config.query).evaluate()
 }

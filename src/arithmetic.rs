@@ -6,7 +6,7 @@ pub enum Bracket {
     Right,
 }
 
-#[derive(Debug, Eq, Ord)]
+#[derive(Debug)]
 pub enum Operator {
     Add,
     Sub,
@@ -115,7 +115,7 @@ impl std::ops::Rem for Number {
     fn rem(self, rhs: Self) -> Self::Output {
         match (self, rhs) {
             (Number::Integer(lhs), Number::Integer(rhs)) => Some(Number::Integer(lhs % rhs)),
-            _ => None // Reminder defined only for integers!
+            _ => None, // Reminder defined only for integers!
         }
     }
 }
